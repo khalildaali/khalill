@@ -51,7 +51,7 @@ console.log(response.data)
     if(response.data.status =200){
       localStorage.setItem('auth', true);
       localStorage.setItem('token', response.data.token_type+' '+response.data.access_token);
-      console.log(localStorage.getItem('token'))
+      localStorage.setItem('token_post',response.data.token_post);
       window.location.reload();
     }
   })
