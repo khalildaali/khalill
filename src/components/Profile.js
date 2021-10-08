@@ -67,12 +67,7 @@ const handelEmail =(e)=>{
 
 
 const handelValid = ()=>{
-  console.log(name)
-if(name ==undefined || email ==undefined){
-  
-  handelprofile();
-  console.log(name)
-}
+
   const baseURLupdate = "http://127.0.0.1:8000/api/user/updateprofile/";
    axios.put(baseURLupdate, {
     email:  email,
@@ -87,7 +82,7 @@ if(name ==undefined || email ==undefined){
           setEmail(response.data.email)
           setMsg(response.data.message)
           localStorage.setItem('token_post',response.data.token_post)
-          //  window.location.reload();
+            window.location.reload();
         }
   
       })

@@ -17,13 +17,20 @@ import {
   import rightArrow from '../assets/right-arrow.svg';
   import { useHistory } from 'react-router';
   import Login from './Login';
+  import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
+import Taches from './Taches';
   function Bannerconx() {
     let history = useHistory()
     const logout =()=>{
       localStorage.setItem('auth', false);
       localStorage.setItem('token', "");
       window.location.reload();
-    }
+    }  
   
     return (
       <>
@@ -39,9 +46,10 @@ import {
               <Image boxSize="110px" src={brandLogo} alt="brand" />
             </Box>
             <Box>
+ {/* <Button pr={3} colorScheme="gray.600" fontSize="lg" variant="link" > <Link to="/taches">Taches</Link> </Button> */}
               <Button pr={3} colorScheme="gray.600" fontSize="lg" variant="link" onClick={logout}>
                 Logout
-              </Button>
+              </Button> 
               
             </Box>
           </Box>

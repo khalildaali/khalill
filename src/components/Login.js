@@ -23,6 +23,7 @@ function Login(...props) {
 let history = useHistory()
   const [show, setShow] = React.useState(false)
   const [auth, setAuth] = React.useState(false)
+  const [msg, setMsg] = React.useState("")
   const handleClick = () => setShow(!show)
   const [password, setPassword] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -46,7 +47,7 @@ console.log(baseURL)
 })
 .then(function (response) {
   props.aut = true
-  history.push('/taches')
+  history.push('/profile')
 console.log(response.data)
     if(response.data.status =200){
       localStorage.setItem('auth', true);
@@ -56,6 +57,8 @@ console.log(response.data)
     }
   })
 .catch(function (error) {
+  setMsg("login ou mot de passe incorrect")
+  let color ='errorBorderColor="red.300"';
   history.push('/')
 console.log(error)
    
@@ -63,7 +66,7 @@ console.log(error)
 
 }
 if(localStorage.getItem('auth') =='true'){
-  history.push('/taches')
+  history.push('/profile')
 }
 
   return (
@@ -84,10 +87,13 @@ if(localStorage.getItem('auth') =='true'){
             <Center fontSize="40px">
               <h1> Connexion</h1>
             </Center>
+            <Center fontSize="20px" color="red.100">
+              <h1> {msg}</h1>
+            </Center>
           </Box>
           <FormControl id="adress_email" isRequired p="2" >
             <FormLabel fontSize="20px">Adresse Email</FormLabel>
-            <Input type="text" placeholder="Adresse email" textColor="black" size="md" onChange={handelEmail}/>
+            <Input type="text" placeholder="Adresse email" textColor="black" size="md" onChange={handelEmail} errorBorderColor="red.300" />
           </FormControl >
           <FormControl id="password" isRequired p="2" >
             <FormLabel fontSize="20px">Mot de Passe</FormLabel>

@@ -19,6 +19,7 @@ import { Box, Image } from '@chakra-ui/react';
 import imageBg from './assets/bg.svg';
 import Login from './components/Login';
 import Bannerconx from './components/Bannerconx';
+import Taches from './components/Taches';
 
 function App() {
   let history = useHistory();
@@ -37,7 +38,8 @@ function App() {
       <Router>
         <Switch>
             <Route exact path="/"  component={Login}/>  
-          <Route exact path="/taches" component={Profile}/>
+          <Route exact path="/profile" component={Profile}/>
+          <Route exact path="/Taches" component={Taches}/>
         </Switch>
      
       </Router>
