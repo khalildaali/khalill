@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Taches;
 use App\Models\Logauth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -127,6 +128,17 @@ class AuthController extends Controller
     {
         return response()->json(auth()->user());
     }
+
+
+     /**
+     * Get  Users.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getUsers()
+    {
+        return response()->json(['donne'=>User::all()]);
+    }
     /**
      * Log the user out (Invalidate the token).
      *
@@ -148,7 +160,13 @@ class AuthController extends Controller
     {
         return $this->respondWithToken(auth()->refresh());
     }
-
+  /**
+     * Get all of the tasks for the user.
+     */
+    public function tasks()
+    {
+        return $this->hasMany(Taches::class);
+    }
     /**
      * Get the token array structure.
      *

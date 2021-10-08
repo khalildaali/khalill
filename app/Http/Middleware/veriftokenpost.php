@@ -24,10 +24,5 @@ class veriftokenpost
             }
              return $next($request);
     }
-    public function terminate($request, $response)
-    {
-        $response = $next($request);
-        return $response;
-       
-}
+
 }
