@@ -15,15 +15,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['prefix'=> 'user','namespace' => 'App\Http\Controllers'], function() {
-    Route::post('login', 'AuthController@login');
-    
-    Route::post('register', 'AuthController@register');
-    Route::post('register', 'AuthController@register');
-    Route::group(['middleware' => 'api'], function(){
+        Route::post('login', 'AuthController@login');
+        Route::post('register', 'AuthController@register');
+    Route::group(['middleware' => 'jwt.verify'], function(){
         Route::get('profile', 'AuthController@me');
         Route::get('users', 'AuthController@getUsers');
-        Route::group(['middleware' => 'veriftokenpost'], function(){
-            Route::post('/taches', 'TachesController@create');
+    Route::group(['middleware' => 'veriftokenpost'], function(){   
+        Route::post('codes', 'AuthController@code');
+        Route::post('tache', 'TachesController@create');
         Route::put('updateprofile', 'AuthController@updateprofile');
         });
     });

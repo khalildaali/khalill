@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Validator;
 use App\Models\Taches;
 use Illuminate\Http\Request;
 
@@ -35,7 +36,7 @@ class TachesController extends Controller
 
         if ($validator->fails()) {
             return response()->json(
-                [$validator->errors()],
+                [$validator->errors(),'token_post'=>$request->token_post],
                 422
             );
         }
@@ -43,10 +44,11 @@ class TachesController extends Controller
         $taches = Taches::create(
             array_merge(
                 $validator->validated(),
+                
             )
         );
 
-        return response()->json(['message' => 'Taches created successfully', 'user' => $taches]);
+        return response()->json(['message' => 'Taches created successfully', 'user' => $taches,'token_post'=>$request->token_post]);
     }
 
     /**
@@ -103,5 +105,11 @@ class TachesController extends Controller
     public function destroy(Taches $taches)
     {
         //
+    }protected function responsews($data,$token_post)
+    {
+        return response()->json([
+            'data' => $data,
+            'token_post'=>$token_post
+        ]);
     }
 }
