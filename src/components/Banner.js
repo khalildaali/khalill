@@ -2,20 +2,20 @@ import {
   Box,
   Image,
   Button,
-  Container,
-  Heading,
-  Grid,
-  Badge,
-  FormControl,
-  Input,
+  // Container,
+  // Heading,
+  // Grid,
+  // Badge,
+  // FormControl,
+  // Input,
 } from '@chakra-ui/react';
 import brandLogo from '../assets/logo-shyrineprod.png';
-import illustration from '../assets/illustration.svg';
-import imageOne from '../assets/image-one.jpg';
-import imageTwo from '../assets/image-two.jpg';
-import imageThree from '../assets/image-three.jpg';
-import rightArrow from '../assets/right-arrow.svg';
-import Login from './Login';
+// import illustration from '../assets/illustration.svg';
+// import imageOne from '../assets/image-one.jpg';
+// import imageTwo from '../assets/image-two.jpg';
+// import imageThree from '../assets/image-three.jpg';
+// import rightArrow from '../assets/right-arrow.svg';
+// import Login from './Login';
 function Banner() {
   return (
     <>

@@ -1,73 +1,84 @@
 import {
   Box,
-  show,
   Button,
   Container,
   Center,
   InputGroup,
-  Stack,
   FormControl,
   FormLabel,
   InputRightElement,
-  
+
   Input,
 } from '@chakra-ui/react';
 import { useHistory } from 'react-router';
+import cript from './Crypt';
 import { ViewOffIcon, ViewIcon } from '@chakra-ui/icons';
 import React from 'react';
 import axios from "axios";
-import Banner from './Banner';
+// import Banner from './Banner';
 const baseURL = "http://127.0.0.1:8000/api/user/login";
-
+const config = {
+  headers: {
+    'Accept': `application/json`,
+  }
+};
 function Login(...props) {
-let history = useHistory()
+  let history = useHistory()
   const [show, setShow] = React.useState(false)
   const [auth, setAuth] = React.useState(false)
   const [msg, setMsg] = React.useState("")
   const handleClick = () => setShow(!show)
   const [password, setPassword] = React.useState("");
   const [email, setEmail] = React.useState("");
-  const handelPassword =(e)=>{
+  const handelPassword = (e) => {
     setPassword(e.target.value)
   }
-  const handelEmail =(e)=>{
+  const handelEmail = (e) => {
     setEmail(e.target.value)
   }
   var body = {
-    email:  email,
+    email: email,
     password: password
-}
-const handelsubmit =()=>{
-console.log(baseURL)
-  axios({
-   
-    method: 'post',
-    url: baseURL,
-    data: body
-})
-.then(function (response) {
-  props.aut = true
-  history.push('/profile')
-console.log(response.data)
-    if(response.data.status =200){
-      localStorage.setItem('auth', true);
-      localStorage.setItem('token', response.data.token_type+' '+response.data.access_token);
-      localStorage.setItem('token_post',response.data.token_post);
-      window.location.reload();
-    }
-  })
-.catch(function (error) {
-  setMsg("login ou mot de passe incorrect")
-  let color ='errorBorderColor="red.300"';
-  history.push('/')
-console.log(error)
-   
-})
+  }
+  // console.log(cript(body)) 
 
-}
-if(localStorage.getItem('auth') =='true'){
-  history.push('/profile')
-}
+  const handelsubmit = () => {
+    console.log(baseURL)
+    axios({
+
+      method: 'post',
+      url: baseURL,
+      config,
+      data: { 'data': cript(body) }
+    })
+      .then(function (response) {
+        console.log(response.data)
+        props.aut = true
+        if (response.data.status = 200) {
+          localStorage.setItem('auth', true);
+          localStorage.setItem('token', response.data.token_type + ' ' + response.data.access_token);
+          localStorage.setItem('token_post', response.data.token_post);
+          if (response.data.exist == 'false') {
+            history.push('/profile')
+           
+          } else {
+            history.push('/code')
+          }
+          window.location.reload();
+        }
+      })
+      .catch(function (error) {
+        setMsg("login ou mot de passe incorrect")
+        // let color = 'errorBorderColor="red.300"'
+        // history.push('/')
+       console.log(error.response.data)
+
+      })
+
+  }
+  if (localStorage.getItem('auth') == 'true') {
+    history.push('/profile')
+  }
 
   return (
     <div>
@@ -106,8 +117,8 @@ if(localStorage.getItem('auth') =='true'){
                 onChange={handelPassword}
               />
               <InputRightElement width="4r.5em">
-                <Button h="100%" w="100%"size="sm" onClick={handleClick} colorScheme="teal">
-                  {show ? <ViewOffIcon/> : <ViewIcon/>}
+                <Button h="100%" w="100%" size="sm" onClick={handleClick} colorScheme="teal">
+                  {show ? <ViewOffIcon /> : <ViewIcon />}
                 </Button>
               </InputRightElement>
             </InputGroup>

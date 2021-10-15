@@ -5,9 +5,9 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  // Link
 } from "react-router-dom";
-import { useHistory } from 'react-router';
+// import { useHistory } from 'react-router';
 import React from 'react';
 // import ItWorks from './components/ItWorks';
 // import Upcomming from './components/Upcomming';
@@ -18,11 +18,12 @@ import React from 'react';
 import { Box, Image } from '@chakra-ui/react';
 import imageBg from './assets/bg.svg';
 import Login from './components/Login';
+import Code from './components/Code';
 import Bannerconx from './components/Bannerconx';
 import Taches from './components/Taches';
 
 function App() {
-  let history = useHistory();
+  // let history = useHistory();
   var conn;
 
   if(localStorage.getItem('auth') =='true'){
@@ -38,6 +39,7 @@ function App() {
       <Router>
         <Switch>
             <Route exact path="/"  component={Login}/>  
+            <Route exact path="/code"  component={Code}/>
           <Route exact path="/profile" component={Profile}/>
           <Route exact path="/Taches" component={Taches}/>
         </Switch>
