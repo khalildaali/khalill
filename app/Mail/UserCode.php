@@ -32,6 +32,6 @@ class UserCode extends Mailable
      */
     public function build()
     {
-        return $this->from('shyrineprod9@gmail.com')->view('name');
+        return $this->from('shyrineprod9@gmail.com')->subject('Code de vérification du device')->view('name');
     }
 }

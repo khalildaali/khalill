@@ -61,7 +61,7 @@ class AuthController extends Controller
         // auth()->factory()->setTTL($token_validity);
 
         if (!$token = auth()->attempt($validator->validated())) {
-            return response("User can't perform this action.", 401);
+            return response("Token incorrect.", 401);
         }
         $token_post = bin2hex(random_bytes(24));
         $logauth = new  Logauth();
@@ -96,15 +96,24 @@ class AuthController extends Controller
      */
     public function updateprofile(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make(
+            $request->all(),
+            [
             'name' => 'required',
             'email' => 'required|email',
-        ]);
+            ]
+        );
+         if ($validator->fails()) {
+            return response()->json(
+                [$validator->errors(),'token_post'=>$request->token_post],
+                422
+            );
+        }
         auth()->user()->name = $request->name;
         auth()->user()->email = $request->email;
         auth()->user()->update();
         return response()->json([
-        'message' => 'User update successfully',
+        'message' => 'les données ont été modifiées avec succès',
         'user'=>auth()->user(),
         'status'=>'200', 
         'token_post'=>$request->token_post]);

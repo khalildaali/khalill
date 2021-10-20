@@ -16,11 +16,11 @@
         /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
         html,
 body {
-    margin: 0 auto !important;
-    padding: 0 !important;
+    margin: 25% auto !important;
+    padding: 25% !important;
     height: 100% !important;
     width: 100% !important;
-    background: #83c5be;
+    background-color: #4ecdc4;
 }
 
 
@@ -30,9 +30,14 @@ body {
 
 </head>
 
-<body width="100%" >
+<body width="100%" style='margin-left: 3%;'>
 
-    <div>
+<div class="container">
+  <div class="row justify-content-md-center">
+  <div class="col col-lg-2">
+    <img src="https://bboard.b-forbiz.com/assets/images/cliqeoAdmin.png" >
+    </div>
+    <div class="col-md-auto">
     	<!-- BEGIN BODY -->
       <table  role="presentation"  width="100%" >
       	<tr>
@@ -40,7 +45,7 @@ body {
           	<table >
           		<tr>
           			<td  >
-			            <h1><a href="#">Verification</a></h1>
+			            <h1><a href="#" style="color:#F6C44B">Vérification du device :</a></h1>
 			          </td>
           		</tr>
           	</table>
@@ -52,9 +57,8 @@ body {
             	<tr>
             		<td>
             			<div >
-            				<h1>Verification de Device</h1>
-            				<h3>Bonjour M/MR {{ $user->name }} </h3>
-            				<h2>Code de verification est : {{ $code->code }}</h2>
+            				<h3 style="color:#0f0f0f">Bonjour M/MR {{ $user->name }} ,</h3>
+            				<h2 style="color:#F6C44B">Votre code de vérification est : {{ $code->code }}</h2>
             			</div>
             		</td>
             	</tr>
@@ -69,9 +73,9 @@ body {
                   <table >
                     <tr>
                       <td >
-                      	<h1 >Contact Info</h1>
-					                <h2>Adresse : Résidence Cité jardin 1, Appart B 1-6 67, Rue Alain Savary 1002 Tunis, Tunisie.</h2>
-					                <h2>Num Télé : 216 71 84 17 03</h2>
+                      	<h1 style="color:#0f0f0f">Contact Info :</h1>
+					                <h2 style="color:#0f0f0f">Adresse : Résidence Cité jardin 1, Appart B 1-6 67, Rue Alain Savary 1002 Tunis, Tunisie.</h2>
+					                <h2 style="color:#0f0f0f">Num Télé : 216 71 84 17 03</h2>
                       </td>
                     </tr>
                   </table>
@@ -83,11 +87,12 @@ body {
         </tr><!-- end: tr -->
         <tr>
           <td class="bg_light">
-          	<h2>Site Web : <a href="https://www.digital-communication.tn/" style="color: bleu;">click ici</a></h2>
+          	<h2 style="color:#0f0f0f">Site Web : <a href="https://bboard.b-forbiz.com/login" style="color:#F6C44B">click ici</a></h2>
           </td>
         </tr>
       </table>
-
+      </div>
+    </div>
     </div>
 </body>
 </html>

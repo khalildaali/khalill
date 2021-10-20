@@ -22,11 +22,11 @@ class veriftokenpost
         if($datasepar[0]==md5('shyrineprod') && $datasepar[2] == md5('key-secret')){
             $data = base64_decode($datasepar[1]);
             $donner = json_decode($data);
-            
+
         foreach($donner as $key => $value){
             $request->merge([$key=>$value]);  
         }
-
+        
         if(auth()->user()->token_post !== $request->token_post){
                  auth()->logout();  
             }
