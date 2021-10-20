@@ -133,6 +133,7 @@ class AuthController extends Controller
                 'name'     => 'required|string|between:2,100',
                 'email'    => 'required|email|unique:users',
                 'password' => 'required|min:6',
+                'id_role' => 'required|',
             ]
         );
 
