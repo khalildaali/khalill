@@ -23,10 +23,10 @@ function Code(...props) {
 let history = useHistory()
 if(localStorage.getItem('token')==''){
   localStorage.setItem('token_post','')
-  
+
   history.push('/')
 }
-  const [show, setShow] = React.useState(false)
+const [show, setShow] = React.useState(false)
   const [msg, setMsg] = React.useState("")
   const [code, setCode] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -59,10 +59,22 @@ axios.post(baseURL,{ 'data': cript(body) },
     }
   })
 .catch(function (error) {
+  var nb = parseInt(localStorage.getItem('nbechek')) 
+  var nbr = nb + 1;
+  localStorage.setItem('nbechek',nbr)
+  console.log(error.response.data.token_post)
   setMsg("Code incorrect")
   let color ='errorBorderColor="red.300"';
   // history.push('/')
-console.log(error.response.data)
+  localStorage.setItem('token_post',error.response.data.token_post);
+  if( localStorage.getItem('nbechek') == '3'){
+    localStorage.setItem('token_post','')
+    localStorage.setItem('auth','false')
+    localStorage.setItem('nbechek',0)
+    history.push('/')
+    window.location.reload();
+  }
+
    
 })
 

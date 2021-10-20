@@ -8,7 +8,7 @@ import {
   // Link
 } from "react-router-dom";
 // import { useHistory } from 'react-router';
-import React from 'react';
+import React , { useState }from 'react';
 // import ItWorks from './components/ItWorks';
 // import Upcomming from './components/Upcomming';
 // import Popular from './components/Popular';
@@ -24,6 +24,7 @@ import Taches from './components/Taches';
 
 function App() {
   // let history = useHistory();
+
   var conn;
 
   if(localStorage.getItem('auth') =='true'){
@@ -31,8 +32,12 @@ function App() {
   }else{
     conn =  <Banner />;
   }
+
+
   return (
+  
     <div className="App">
+     
       <Box position="absolute" left="0" top="0" right="0">
         {conn}
       

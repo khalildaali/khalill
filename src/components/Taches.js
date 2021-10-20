@@ -8,8 +8,12 @@ import {
   FormControl,
   FormLabel,
   Center,
-  Select
-  
+  Select,
+  AlertIcon,
+  Alert,
+  AlertTitle,
+  CloseButton,
+
 } from '@chakra-ui/react';
 
 import React, { useState } from 'react';
@@ -40,6 +44,13 @@ function Taches() {
     let history = useHistory()
     if (localStorage.getItem('auth') != 'true') {
         history.push('/')
+        localStorage.setItem('token',null)
+        localStorage.setItem('token_post',null)
+
+    }
+ 
+    const close = ()=>{
+      setMsg('');
     }
     const handelUsers = ()=>{
       axios.get(baseURL,config
@@ -70,12 +81,15 @@ React.useEffect(() => {
 
 const handelTitle =(e)=>{
   setTitre(e.target.value)
+  setMsg('');
 }
 const handelDescription =(e)=>{
   setDescription(e.target.value)
+  setMsg('');
 }
 const handelSelectUser =(e)=>{
   setId(e.target.value)
+  setMsg('');
  
 }
 console.log(titre,description,id)
@@ -103,7 +117,7 @@ const handelValid = ()=>{
           setMsg(response.data.message)
           localStorage.setItem('token_post',response.data.token_post)
             // window.location.reload();
-       
+            setDescription('')
   
       })
     .catch(function (error) {  
@@ -142,8 +156,12 @@ const handelValid = ()=>{
               <Box
 
               >
-                <Center fontSize="30px" color="red">
-                  { <h2> {msg}</h2>}
+                <Center fontSize="20px" color="red">
+                {msg !="" ? <Alert status={titre =='' || description =='' || id =='' ? "error":"success"} variant="solid">
+  <AlertIcon />
+  <AlertTitle mr={2} color='orange'>{msg}</AlertTitle>
+  <CloseButton position="absolute" right="8px" top="8px" status={titre =='' || description =='' || id =='' ? "error":"success"} onClick={close}/>
+</Alert> : null}
                 </Center>
               </Box>
               <Box color="teal.500" w="100%" h="100%"  >

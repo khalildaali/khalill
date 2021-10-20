@@ -7,6 +7,10 @@ import {
     FormControl,
     FormLabel,
     Center,
+    AlertIcon,
+    Alert,
+    AlertTitle,
+    CloseButton
 } from '@chakra-ui/react';
 import illustration from '../assets/illustration.svg';
 // import imageOne from '../assets/image-one.jpg';
@@ -64,11 +68,16 @@ const handelName =(e)=>{
 const handelEmail =(e)=>{
   setEmail(e.target.value)
 }
-
-
+setTimeout(() => {
+  setMsg('');
+}, 4000);
+const close = ()=>{
+  setMsg('');
+}
 const handelValid = ()=>{
-  console.log(name)
-  console.log(email)
+if(email ==='' || name ===''){
+  setMsg('Données Incorrect')
+}else{
 const body = {
   email:  email,
   name: name,
@@ -84,18 +93,20 @@ console.log(cript(body))
           setMsg(response.data.message)
           localStorage.setItem('token_post',response.data.token_post)
         }
+       
   
       })
     .catch(function (error) {  
       console.error(error.response)
-      // setMsg("")
-      // if(error.response.status==400 || error.response.status==401 || error.response.status==402 || error.response.status==404) {
-      //   localStorage.setItem('token',null)
-      //   localStorage.setItem('auth',false)
-      //   history.push('/')
-      // }
+    // setMsg("")
+    if(error.response.status==400 || error.response.status==401 ||error.response.status==403) {
+      localStorage.setItem('token',null)
+      localStorage.setItem('auth',false)
+      history.push('/')
+    }
       
     })
+  }
 }
     return (
         <div>
@@ -115,8 +126,12 @@ console.log(cript(body))
                             <Box
 
                             >
-                                <Center fontSize="30px" color="red">
-                                    <h2> {msg}</h2>
+                                <Center fontSize="20px" color="red" p="3%">
+                                {msg !="" ? <Alert status="success" variant="solid">
+  <AlertIcon />
+  <AlertTitle mr={2} color='orange'>{msg}</AlertTitle>
+  <CloseButton position="absolute" right="8px" top="8px" status="success" onClick={close}/>
+</Alert> : null}
                                 </Center>
                             </Box>
                             <Box color="teal.500" w="100%" h="100%"  >
@@ -141,9 +156,7 @@ console.log(cript(body))
                                         isTruncated
                                         color="red.500"
                                     />
-                                    <FormControl id="first-name" p="2" >
                                         <Button colorScheme="teal" w="100%" textColor="white" onClick={handelValid}>valider</Button>
-                                    </FormControl>
                                     <Box
 
                                     />
@@ -154,7 +167,7 @@ console.log(cript(body))
 
                         <Box w="50%" p="1%" >
                             <Image w="100%" src={illustration} alt="illustration" />
-                        </Box>
+                        </Box>                        
                     </Box>
                 </Container>
               
