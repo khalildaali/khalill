@@ -2,7 +2,7 @@ import {
   Box,
   Image,
   Button,
-  // Container,
+  Link,
   // Heading,
   // Grid,
   // Badge,
@@ -31,11 +31,11 @@ function Banner() {
             <Image boxSize="110px" src={brandLogo} alt="brand" />
           </Box>
           <Box>
-            <Button pr={3} colorScheme="gray.600" fontSize="lg" variant="link">
-              Log in
+            <Button pr={3} colorScheme="gray.600" fontSize="lg" variant="link"><Link href="/" >
+              Log in </Link>
             </Button>
-            <Button colorScheme="gray.600" fontSize="lg" variant="link">
-              Sign up
+            <Button colorScheme="gray.600" fontSize="lg" variant="link"><Link href="/signup" >
+              Sign up </Link>
             </Button>
           </Box>
         </Box>

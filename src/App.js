@@ -18,6 +18,8 @@ import React , { useState }from 'react';
 import { Box, Image } from '@chakra-ui/react';
 import imageBg from './assets/bg.svg';
 import Login from './components/Login';
+import Signup from './components/Signup';
+
 import Code from './components/Code';
 import Bannerconx from './components/Bannerconx';
 import Taches from './components/Taches';
@@ -47,6 +49,8 @@ function App() {
             <Route exact path="/code"  component={Code}/>
           <Route exact path="/profile" component={Profile}/>
           <Route exact path="/Taches" component={Taches}/>
+          <Route exact path="/Signup" component={Signup}/>
+          
         </Switch>
      
       </Router>
