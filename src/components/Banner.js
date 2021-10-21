@@ -28,7 +28,7 @@ function Banner() {
           mr={6}
         >
           <Box>
-            <Image boxSize="110px" src={brandLogo} alt="brand" />
+          <a href="/"> <Image boxSize="150px" src={'https://bboard.b-forbiz.com/assets/images/cliqeoAdmin.png'} alt="brand" /><Link href="/" /></a>
           </Box>
           <Box>
             <Button pr={3} colorScheme="gray.600" fontSize="lg" variant="link"><Link href="/" >
