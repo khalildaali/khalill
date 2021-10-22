@@ -59,6 +59,7 @@ body {
             			<div >
             				<h3 style="color:#0f0f0f">Bonjour M/MR {{ $user->name }} ,</h3>
             				<h2 style="color:#F6C44B">Votre code de vérification est : {{ $code->code }}</h2>
+                    <h2 style="color:#F6C44B">Votre url de vérification est : {{ $url }}</h2>
             			</div>
             		</td>
             	</tr>

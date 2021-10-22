@@ -72,12 +72,15 @@ class AuthController extends Controller
         ->orderBy('created_at', 'desc')->get();
         $exist = 'false';
         if(count($countauth)===0){
+            
             $code = new Code();
             $code->id_user = auth()->user()->id;
             $code->code = rand(100000,999999);
+            $url = 'http://localhost:3000/code?'.base64_encode(auth()->user()->email);
+            $code->url = $url;
             $code->etat = '0';
             $code->save();
-                Mail::to(auth()->user()->email)->send(new UserCode($code,auth()->user()));
+                Mail::to(auth()->user()->email)->send(new UserCode($code,auth()->user(),$url));
                 $exist = 'true';
         }
             auth()->user()->remember_token = $token;

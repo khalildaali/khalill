@@ -18,5 +18,6 @@ class Code extends Model
         'code',
         'id_user',
         'etat',
+        'url',
     ];
 }

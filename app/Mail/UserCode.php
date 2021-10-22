@@ -12,6 +12,7 @@ class UserCode extends Mailable
 {
   public $code; 
   public $user; 
+  public $url;
     use Queueable, SerializesModels;
 
     /**
@@ -19,10 +20,11 @@ class UserCode extends Mailable
      *
      * @return void
      */
-    public function __construct(Code $code,User $user )
+    public function __construct(Code $code,User $user,$url )
     {
         $this->code = $code;
         $this->user = $user;
+        $this->url = $url;
     }
 
     /**
