@@ -9,6 +9,7 @@ import {
   Input,
 } from '@chakra-ui/react';
 import { useHistory } from 'react-router';
+import {decode as base64_decode} from 'base-64';
 import cript from './Crypt';
 import React from 'react';
 import axios from "axios";
@@ -20,6 +21,7 @@ const config = {
   }
 };
 function Code(...props) {
+
 let history = useHistory()
 if(localStorage.getItem('token')==''){
   localStorage.setItem('token_post','')
@@ -33,11 +35,13 @@ const [show, setShow] = React.useState(false)
   const handelCode =(e)=>{
     setCode(e.target.value)
   }
-  const handelEmail =(e)=>{
-    setEmail(e.target.value)
-  }
+  var url = window.location.href;
+  const paramcrypt = url.split('?');
+  var param = base64_decode(paramcrypt[1]);
+    
+
   var body = {
-    email:  email,
+    email:  param,
     code: code,
     token_post:localStorage.getItem('token_post')
 }
@@ -55,7 +59,6 @@ axios.post(baseURL,{ 'data': cript(body) },
     if(response.data.status =200){
       localStorage.setItem('auth', true);
        history.push('/profile')
-      // window.location.reload();
     }
   })
 .catch(function (error) {
@@ -105,8 +108,8 @@ axios.post(baseURL,{ 'data': cript(body) },
           </Box>
           <FormControl id="adress_email" isRequired p="2" >
           
-            <FormLabel fontSize="20px" bgGradient="linear(to-r, #012a4a, #cddafd)" bgClip="text" fontWeight="extrabold">Adresse Email</FormLabel>
-            <Input type="text" placeholder="Adresse email" textColor="black" size="md" onChange={handelEmail} errorBorderColor="red.300" />
+            <FormLabel fontSize="20px" bgGradient="linear(to-r, #012a4a, #cddafd)" bgClip="text" fontWeight="extrabold" >Adresse Email</FormLabel>
+            <Input type="text" placeholder="Adresse email" textColor="black" size="md" errorBorderColor="red.300" value={param} disabled={true}/>
           </FormControl >
           <FormControl id="password" isRequired p="2" >
             <FormLabel fontSize="20px"  bgGradient="linear(to-r, #012a4a, #cddafd)" bgClip="text" fontWeight="extrabold">

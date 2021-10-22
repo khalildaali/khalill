@@ -22,7 +22,7 @@ import {
             mr={6}
           >
             <Box>
-             <a href="/"> <Image boxSize="150px" src={'https://bboard.b-forbiz.com/assets/images/cliqeoAdmin.png'} alt="brand" /><Link href="/" /></a>
+             <a href="/"> <Image boxSize="150px" src={'https://bboard.b-forbiz.com/assets/images/cliqeoAdmin.png'} alt="brand" /><Link href="/profile" /></a>
             </Box>
             <Box>
             <Button pr={3} colorScheme="gray.600" fontSize="lg" variant="link">

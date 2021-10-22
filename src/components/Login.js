@@ -70,12 +70,12 @@ function Login(...props) {
           localStorage.setItem('token', response.data.token_type + ' ' + response.data.access_token);
           localStorage.setItem('token_post', response.data.token_post);
           if (response.data.exist == 'false') {
+            localStorage.setItem('exist', true);
             history.push('/profile')
-           
+            window.location.reload();
           } else {
-            history.push('/code')
+            setMsg("un email contenant un code de validation a été envoyé")
           }
-          window.location.reload();
         }
       })
       .catch(function (error) {
@@ -87,9 +87,7 @@ function Login(...props) {
       })
 
   }
-  if (localStorage.getItem('auth') == 'true') {
-    history.push('/profile')
-  }
+
 
   return (
     <div>

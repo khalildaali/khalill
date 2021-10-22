@@ -125,6 +125,7 @@ const handelValid = ()=>{
        if(error.response.status==400 || error.response.status==401 || error.response.status==403) {
         localStorage.setItem('token',null)
         localStorage.setItem('auth',false)
+        localStorage.setItem('exist', false);
         history.push('/')
       // }else if(error.response.data[0]){
       //   setMsg(error.response.data[0])
